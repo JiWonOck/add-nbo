@@ -8,12 +8,12 @@
 uint32_t read_file(char* filename) {
     FILE* file = fopen(filename, "rb");
     if (file == NULL) {
-        printf("Failed to open file: %s\n", filename);
+        printf("Failed to open file: %s %s\n", filename, strerror(errno)); //strerror(errno): error display
         exit(1);
     }
 
     uint32_t number;
-    if (fread(&number, sizeof(uint32_t), 1, file) != 1) {
+    if (fread(&number, sizeof(uint32_t), 1, file) != 1) { //sizeof(number) instead of '1'
         printf("Failed to read file: %s\n", filename);
         exit(1);
     }
